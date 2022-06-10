@@ -1,0 +1,368 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "ClubsAdmin API",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost",
+            "description": "API Server"
+        }
+    ],
+    "paths": {
+        "/api/v1/club": {
+            "get": {
+                "tags": [
+                    "ClubsAdmin"
+                ],
+                "summary": "Get all clubs",
+                "description": "Get all clubs",
+                "operationId": "d474b89d230f4025771c873577691f97",
+                "responses": {
+                    "200": {
+                        "description": "All clubs"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "ClubsAdmin"
+                ],
+                "summary": "Create club",
+                "description": "Create club",
+                "operationId": "957edf7896eed6b16f404644b82a2561",
+                "requestBody": {
+                    "description": "Create club Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Club name",
+                                        "type": "string"
+                                    },
+                                    "budget": {
+                                        "description": "Club budget",
+                                        "type": "integer"
+                                    },
+                                    "expense": {
+                                        "description": "Club expense",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Create club"
+                    }
+                }
+            }
+        },
+        "/api/v1/club/{uuid}": {
+            "get": {
+                "tags": [
+                    "ClubsAdmin"
+                ],
+                "summary": "Get club by UUID",
+                "description": "Get club by UUID",
+                "operationId": "680d2dabd8603f139fff223bbae0f3b1",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "description": "Club UUID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Club"
+                    }
+                }
+            }
+        },
+        "/api/v1/club/budget/{uuid}": {
+            "patch": {
+                "tags": [
+                    "ClubsAdmin"
+                ],
+                "summary": "Budget club update",
+                "description": "Budget club update",
+                "operationId": "b7f8b69cdd1fbffffda85cc1db0f5049",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "description": "Club UUID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Update budget club Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "budget"
+                                ],
+                                "properties": {
+                                    "budget": {
+                                        "description": "Club budget",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Budget club updated"
+                    }
+                }
+            }
+        },
+        "/api/v1/entity/associate/{uuid}": {
+            "patch": {
+                "tags": [
+                    "ClubsAdmin"
+                ],
+                "summary": "Associate entity to a club",
+                "description": "Associate entity to a club",
+                "operationId": "ad190cabc0fe583e082fac3cb251ccc6",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "description": "Entity UUID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Associate club Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "uuid_club"
+                                ],
+                                "properties": {
+                                    "uuid_club": {
+                                        "description": "Club UUID",
+                                        "type": "string"
+                                    },
+                                    "salary": {
+                                        "description": "Entity salary",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Associated club"
+                    }
+                }
+            }
+        },
+        "/api/v1/entity": {
+            "get": {
+                "tags": [
+                    "ClubsAdmin"
+                ],
+                "summary": "Get all entities",
+                "description": "Get all entities",
+                "operationId": "718db4de91e06015a7a27665f2175ac0",
+                "responses": {
+                    "200": {
+                        "description": "All entities"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "ClubsAdmin"
+                ],
+                "summary": "Create entity",
+                "description": "Create entity",
+                "operationId": "f25e73305bb6fee3a1da32334b179bff",
+                "requestBody": {
+                    "description": "Create entity Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "type",
+                                    "name",
+                                    "surname",
+                                    "email",
+                                    "phone"
+                                ],
+                                "properties": {
+                                    "uuid_club": {
+                                        "description": "Club UUID",
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "description": "Entity type",
+                                        "type": "enum['PLAYER', 'TRAINER']"
+                                    },
+                                    "name": {
+                                        "description": "Entity name",
+                                        "type": "string"
+                                    },
+                                    "surname": {
+                                        "description": "Entity surname",
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "description": "Entity email",
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "description": "Entiy phone",
+                                        "type": "string"
+                                    },
+                                    "salary": {
+                                        "description": "Entity salary",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Create entity"
+                    }
+                }
+            }
+        },
+        "/api/v1/entity/disassociate/{uuid}": {
+            "patch": {
+                "tags": [
+                    "ClubsAdmin"
+                ],
+                "summary": "Disassociate entity to a Club",
+                "description": "Disassociate entity to a Club",
+                "operationId": "ca46a4d92ba00a2834da9f1f8f9d0a06",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "description": "Entity UUID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Disassociate entity to a Club"
+                    }
+                }
+            }
+        },
+        "/api/v1/entity/club/{uuidClub}": {
+            "get": {
+                "tags": [
+                    "ClubsAdmin"
+                ],
+                "summary": "Get all entities by club UUID",
+                "description": "Get all entities by club UUID",
+                "operationId": "d196883941e01d56f933efe226dddf4e",
+                "parameters": [
+                    {
+                        "name": "uuidClub",
+                        "in": "path",
+                        "description": "Club UUID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "Entity type",
+                        "schema": {
+                            "type": "enum['PLAYER', 'TRAINER']"
+                        }
+                    },
+                    {
+                        "name": "surname",
+                        "in": "query",
+                        "description": "Entity surname content",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Filtered and paginated entities"
+                    }
+                }
+            }
+        },
+        "/api/v1/entity/{uuid}": {
+            "get": {
+                "tags": [
+                    "ClubsAdmin"
+                ],
+                "summary": "Get entity by UUID",
+                "description": "Get entity by UUID",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "description": "Entity UUID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Entity"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "ClubsAdmin",
+            "description": "API Endpoints of Projects"
+        }
+    ]
+}

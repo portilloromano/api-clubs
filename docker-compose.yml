@@ -1,0 +1,72 @@
+version: '3'
+
+services:
+
+  #Laravel Api
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: api/laravel
+    container_name: api
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: api
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    networks:
+      - mynet
+
+  #Nginx Service
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - mynet
+
+  #DB Service
+  db:
+    image: mariadb
+    container_name: db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: clubsadmindb
+      MYSQL_USER: clubsadmin
+      MYSQL_PASSWORD: clubsadmin
+      MYSQL_ROOT_PASSWORD: rootpassword
+    volumes:
+      - mysqldata:/var/lib/mysql/
+    networks:
+      - mynet
+
+  #Mail Service
+  maildev:
+    image: dominikserafin/maildev
+    container_name: maildev
+    ports:
+      - '1080:1080'
+      - '1025:1025'
+    networks:
+      - mynet
+
+#Docker Networks
+networks:
+  mynet:
+    driver: bridge
+#Volumes
+volumes:
+  mysqldata:
+    driver: local
