@@ -14,3 +14,4 @@ Para poner el proyecto en marcha debe de abrir una terminal, posicionarse dentro
 ## Url
 
 - Swagger: [http://localhost/api/v1/documentation](http://localhost/api/v1/documentation)
+- MailDev: [http://localhost:1080/](http://localhost:1080)
