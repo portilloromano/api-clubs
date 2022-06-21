@@ -15,3 +15,6 @@ Para poner el proyecto en marcha debe de abrir una terminal, posicionarse dentro
 
 - Swagger: [http://localhost/api/v1/documentation](http://localhost/api/v1/documentation)
 - MailDev: [http://localhost:1080/](http://localhost:1080)
+
+## Documentación
+- Prueba Técnica: [PDF](./doc/Prueba%20técnica%20Backend%20-%20v4.pdf")
