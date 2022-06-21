@@ -17,4 +17,4 @@ Para poner el proyecto en marcha debe de abrir una terminal, posicionarse dentro
 - MailDev: [http://localhost:1080/](http://localhost:1080)
 
 ## Documentación
-- Prueba Técnica: [PDF](./doc/Prueba%20técnica%20Backend%20-%20v4.pdf")
+- Prueba Técnica: [PDF](./doc/Prueba%20técnica%20Backend%20-%20v4.pdf)
